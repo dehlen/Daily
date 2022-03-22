@@ -18,8 +18,8 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
             <rect key="contentRect" x="196" y="240" width="331" height="371"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
-            <view key="contentView" wantsLayer="YES" misplaced="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="331" height="371"/>
+            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="331" height="389"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tqi-YT-U32">
@@ -72,8 +72,8 @@
                             <action selector="supportPressed:" target="-2" id="XVa-k0-cTS"/>
                         </connections>
                     </button>
-                    <scrollView appearanceType="aqua" misplaced="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9C-KT-zBo">
-                        <rect key="frame" x="0.0" y="42" width="331" height="133"/>
+                    <scrollView appearanceType="aqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9C-KT-zBo">
+                        <rect key="frame" x="0.0" y="60" width="331" height="133"/>
                         <clipView key="contentView" drawsBackground="NO" id="uXj-iS-Gw1">
                             <rect key="frame" x="0.0" y="0.0" width="331" height="133"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
