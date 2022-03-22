@@ -13,6 +13,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             CalendarPreferenceViewController()
         ]
     )
+    
+    private let aboutWindowController = AboutWindowController(windowNibName: .init("AboutWindowController"))
+
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusBarController.delegate = self
@@ -46,6 +49,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: kShowShortcut, toAction: { [weak self] in
             self?.handleHotkey()
         })
+    }
+    
+    @IBAction func showAboutScreen(_ sender: AnyObject?) {
+        aboutWindowController.showWindow(nil)
+        NSApp.activate(ignoringOtherApps: true)
+
     }
 
     @IBAction func showPrefs(_ sender: AnyObject?) {
@@ -94,5 +103,9 @@ extension AppDelegate: StatusBarControllerDelegate {
     
     func statusBarControllerDidSelectPreferences(_ statusBarController: StatusBarController) {
         self.showPrefs(nil)
+    }
+    
+    func statusBarControllerDidSelectAbout(_ statusBarController: StatusBarController) {
+        self.showAboutScreen(nil)
     }
 }

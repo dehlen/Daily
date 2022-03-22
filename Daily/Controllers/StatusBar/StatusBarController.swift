@@ -4,6 +4,7 @@ protocol StatusBarControllerDelegate: AnyObject {
     func statusBarControllerDidSelectNewItem(_ statusBarController: StatusBarController)
     func statusBarControllerDidSelectDailyStandup(_ statusBarController: StatusBarController)
     func statusBarControllerDidSelectPreferences(_ statusBarController: StatusBarController)
+    func statusBarControllerDidSelectAbout(_ statusBarController: StatusBarController)
 }
 
 final class StatusBarController: NSObject {
@@ -60,7 +61,7 @@ final class StatusBarController: NSObject {
     }
     
     @objc func openAboutPanel() {
-        NSApplication.shared.orderFrontStandardAboutPanel()
+        delegate?.statusBarControllerDidSelectAbout(self)
     }
     
     @objc func openPreferences() {
