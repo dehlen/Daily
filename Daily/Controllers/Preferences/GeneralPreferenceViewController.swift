@@ -1,4 +1,5 @@
 import Cocoa
+import LaunchAtLogin
 import MASShortcut
 import Preferences
 
@@ -12,7 +13,8 @@ final class GeneralPreferenceViewController: NSViewController, PreferencePane {
 
     @IBOutlet weak var showShortcutKeyView: MASShortcutView!
     @IBOutlet weak var captureFolderPathControl: NSPathControl!
-    
+    @IBOutlet weak var startAtLoginCheckBox: NSButton!
+
     override var nibName: NSNib.Name? { "GeneralPreferenceViewController" }
 
     override func viewDidLoad() {
@@ -22,6 +24,15 @@ final class GeneralPreferenceViewController: NSViewController, PreferencePane {
         captureFolderPathControl.url = UserDefaults.standard.url(forKey: kCapturePath)
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        self.startAtLoginCheckBox.state = LaunchAtLogin.isEnabled ? .on : .off
+    }
+    
+    @IBAction private func setLaunchAtLogin(sender: NSButton) {
+        LaunchAtLogin.isEnabled = sender.state == .on
+    }
+
     @IBAction func chooseCaptureFolder(_ sender: AnyObject?) {
         let panel = NSOpenPanel()
         panel.canChooseFiles = false

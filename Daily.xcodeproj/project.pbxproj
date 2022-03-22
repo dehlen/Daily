@@ -12,6 +12,7 @@
 		0931997B27EA01FD004560A6 /* NSWindow+ShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0931997A27EA01FD004560A6 /* NSWindow+ShowAlert.swift */; };
 		0931997E27EA0207004560A6 /* Bundle+VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0931997C27EA0207004560A6 /* Bundle+VersionInfo.swift */; };
 		0931997F27EA0207004560A6 /* Bundle+AppName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0931997D27EA0207004560A6 /* Bundle+AppName.swift */; };
+		0931998227EA0543004560A6 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 0931998127EA0543004560A6 /* LaunchAtLogin */; };
 		09E2308027E886E800E1728F /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = 09E2307F27E886E800E1728F /* MASShortcut */; };
 		09E2308227E88B5800E1728F /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E2308127E88B5800E1728F /* StatusBarController.swift */; };
 		09E2308527E88F6700E1728F /* StandupWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E2308327E88F6700E1728F /* StandupWindowController.swift */; };
@@ -73,6 +74,7 @@
 			files = (
 				09E230AE27E8DF8500E1728F /* MarkdownUI in Frameworks */,
 				09E2308027E886E800E1728F /* MASShortcut in Frameworks */,
+				0931998227EA0543004560A6 /* LaunchAtLogin in Frameworks */,
 				09E2309727E8B0CA00E1728F /* Preferences in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,6 +213,7 @@
 				C6672AF127475FB000D616B6 /* Sources */,
 				C6672AF227475FB000D616B6 /* Frameworks */,
 				C6672AF327475FB000D616B6 /* Resources */,
+				0931998327EA0681004560A6 /* Launch At Login */,
 			);
 			buildRules = (
 			);
@@ -221,6 +224,7 @@
 				09E2307F27E886E800E1728F /* MASShortcut */,
 				09E2309627E8B0CA00E1728F /* Preferences */,
 				09E230AD27E8DF8500E1728F /* MarkdownUI */,
+				0931998127EA0543004560A6 /* LaunchAtLogin */,
 			);
 			productName = Capture;
 			productReference = C6672AF527475FB000D616B6 /* Daily.app */;
@@ -234,7 +238,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					C6672AF427475FB000D616B6 = {
 						CreatedOnToolsVersion = 13.1;
@@ -254,6 +258,7 @@
 				09E2307E27E886E800E1728F /* XCRemoteSwiftPackageReference "MASShortcut" */,
 				09E2309527E8B0CA00E1728F /* XCRemoteSwiftPackageReference "Preferences" */,
 				09E230AC27E8DF8500E1728F /* XCRemoteSwiftPackageReference "MarkdownUI" */,
+				0931998027EA0543004560A6 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 			);
 			productRefGroup = C6672AF627475FB000D616B6 /* Products */;
 			projectDirPath = "";
@@ -280,6 +285,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0931998327EA0681004560A6 /* Launch At Login */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Launch At Login";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C6672AF127475FB000D616B6 /* Sources */ = {
@@ -441,6 +467,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Daily/Daily.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
@@ -470,6 +497,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Daily/Daily.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
@@ -517,6 +545,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0931998027EA0543004560A6 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		09E2307E27E886E800E1728F /* XCRemoteSwiftPackageReference "MASShortcut" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/shpakovski/MASShortcut";
@@ -544,6 +580,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0931998127EA0543004560A6 /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0931998027EA0543004560A6 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			productName = LaunchAtLogin;
+		};
 		09E2307F27E886E800E1728F /* MASShortcut */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 09E2307E27E886E800E1728F /* XCRemoteSwiftPackageReference "MASShortcut" */;
