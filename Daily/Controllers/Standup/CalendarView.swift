@@ -3,19 +3,13 @@ import SwiftUI
 
 struct CalendarView: View {
     @EnvironmentObject private var calendarStore: CalendarStore
-    @State private var events: [EKEvent] = []
 
     var body: some View {
         VStack(alignment: .leading) {
-            ForEach(events, id: \.eventIdentifier) { event in
+            ForEach(calendarStore.todaysEvents, id: \.eventIdentifier) { event in
                 CalendarEventRow(event: event)
             }
         }
-        .onAppear(perform: self.fetchEvents)
-    }
-    
-    private func fetchEvents() {
-        self.events = calendarStore.fetchEvents(date: Date())
     }
 }
 

@@ -12,8 +12,6 @@ final class CalendarPreferenceViewController: NSViewController, PreferencePane {
     @IBOutlet private weak var calendarDisplayCheckBox: NSButton!
     @IBOutlet private weak var containerView: NSView!
 
-    let calendarStore = CalendarStore()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +19,8 @@ final class CalendarPreferenceViewController: NSViewController, PreferencePane {
     }
     
     private func setup() {
-        let calendarPreferencesView = CalendarPreferencesView().environmentObject(calendarStore)
+        let calendarPreferencesView = CalendarPreferencesView()
+            .environmentObject(CalendarStore.shared)
         let hostingView = NSHostingView(rootView: calendarPreferencesView)
         containerView.addSubview(hostingView)
         hostingView.translatesAutoresizingMaskIntoConstraints = false

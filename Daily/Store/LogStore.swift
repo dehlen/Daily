@@ -19,7 +19,7 @@ final class LogStore: ObservableObject {
         load()
     }
     
-    private func load() {
+    func load() {
         self.todaysLogs = fetchLogs(date: Date())
         self.previousWorkdayLogs = fetchLogs(date: Date().previousWorkDay)
     }

@@ -2,6 +2,7 @@ import AppKit
 import EventKit
 
 final class CalendarStore: NSObject, ObservableObject {
+    static let shared = CalendarStore()
     let eventStore = EKEventStore()
     let defaults = UserDefaults.standard
     
@@ -10,7 +11,9 @@ final class CalendarStore: NSObject, ObservableObject {
     }
     
     @Published private(set) var selectedCalendardIDs: [String] = []
-    
+    @Published private(set) var todaysEvents: [EKEvent] = []
+    @Published private(set) var authorizationStatus: EKAuthorizationStatus = .notDetermined
+
     var all: [String: [EKCalendar]] {
         let calendars = eventStore.calendars(for: .event)
         return Dictionary(grouping: calendars) { $0.source.title }
@@ -23,12 +26,11 @@ final class CalendarStore: NSObject, ObservableObject {
     
     func requestAccess(completion: @escaping EKEventStoreRequestAccessCompletionHandler) {
         eventStore.requestAccess(to: .event) { (accessGranted, error) in
+            DispatchQueue.main.async {
+                self.load()
+            }
             completion(accessGranted, error)
         }
-    }
-    
-    var authorizationStatus: EKAuthorizationStatus {
-        return EKEventStore.authorizationStatus(for: .event)
     }
     
     func isSelected(calendarID: String) -> Bool {
@@ -63,9 +65,12 @@ final class CalendarStore: NSObject, ObservableObject {
     
     private func load() {
         self.selectedCalendardIDs = defaults.object(forKey: Key.selectedCalendardIDs) as? [String] ?? [String]()
+        self.todaysEvents = fetchEvents(date: Date())
+        self.authorizationStatus = EKEventStore.authorizationStatus(for: .event)
     }
     
     private func save() {
         defaults.set(selectedCalendardIDs, forKey: Key.selectedCalendardIDs)
+        self.todaysEvents = fetchEvents(date: Date())
     }
 }

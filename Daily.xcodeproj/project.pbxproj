@@ -13,6 +13,7 @@
 		0931997E27EA0207004560A6 /* Bundle+VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0931997C27EA0207004560A6 /* Bundle+VersionInfo.swift */; };
 		0931997F27EA0207004560A6 /* Bundle+AppName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0931997D27EA0207004560A6 /* Bundle+AppName.swift */; };
 		0931998227EA0543004560A6 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 0931998127EA0543004560A6 /* LaunchAtLogin */; };
+		09D04ECB27EC601D0097C557 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D04ECA27EC601D0097C557 /* Notification+Name.swift */; };
 		09E2308027E886E800E1728F /* MASShortcut in Frameworks */ = {isa = PBXBuildFile; productRef = 09E2307F27E886E800E1728F /* MASShortcut */; };
 		09E2308227E88B5800E1728F /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E2308127E88B5800E1728F /* StatusBarController.swift */; };
 		09E2308527E88F6700E1728F /* StandupWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E2308327E88F6700E1728F /* StandupWindowController.swift */; };
@@ -43,6 +44,7 @@
 		0931997A27EA01FD004560A6 /* NSWindow+ShowAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+ShowAlert.swift"; sourceTree = "<group>"; };
 		0931997C27EA0207004560A6 /* Bundle+VersionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+VersionInfo.swift"; sourceTree = "<group>"; };
 		0931997D27EA0207004560A6 /* Bundle+AppName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+AppName.swift"; sourceTree = "<group>"; };
+		09D04ECA27EC601D0097C557 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		09E2308127E88B5800E1728F /* StatusBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		09E2308327E88F6700E1728F /* StandupWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandupWindowController.swift; sourceTree = "<group>"; };
 		09E2308427E88F6700E1728F /* StandupWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StandupWindowController.xib; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				09E230A527E8D97800E1728F /* Date+Extensions.swift */,
 				0931997D27EA0207004560A6 /* Bundle+AppName.swift */,
 				0931997C27EA0207004560A6 /* Bundle+VersionInfo.swift */,
+				09D04ECA27EC601D0097C557 /* Notification+Name.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				09E230A427E8B5A800E1728F /* CalendarPreferencesView.swift in Sources */,
 				0931997B27EA01FD004560A6 /* NSWindow+ShowAlert.swift in Sources */,
 				0931997827EA01D6004560A6 /* AboutWindowController.swift in Sources */,
+				09D04ECB27EC601D0097C557 /* Notification+Name.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

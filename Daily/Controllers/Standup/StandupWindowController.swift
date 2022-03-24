@@ -6,8 +6,6 @@ class StandupWindowController: NSWindowController {
 
     @IBOutlet weak var containerView: NSView!
         
-    let calendarStore = CalendarStore()
-
     override func windowDidLoad() {
         super.windowDidLoad()
         
@@ -16,7 +14,7 @@ class StandupWindowController: NSWindowController {
     
     private func setup() {
         let standupView = StandupView()
-            .environmentObject(calendarStore)
+            .environmentObject(CalendarStore.shared)
             .environmentObject(LogStore.shared)
 
         let hostingView = NSHostingView(rootView: standupView)
@@ -29,5 +27,10 @@ class StandupWindowController: NSWindowController {
             hostingView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
             hostingView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0)
         ])
+    }
+    
+    override func showWindow(_ sender: Any?) {
+        super.showWindow(sender)
+        NotificationCenter.default.post(name: .shouldUpdateStandupView, object: nil)
     }
 }

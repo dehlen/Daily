@@ -1,19 +1,12 @@
 import EventKit
 import SwiftUI
 
-extension Notification.Name {
-    static let didChangeCalendarAuthorization: Notification.Name = .init(rawValue: "did-change-calendar-authorization")
-}
-
 struct CalendarPreferencesView: View {
     @EnvironmentObject private var calendarStore: CalendarStore
-    @State private var authorizationStatus: EKAuthorizationStatus = .notDetermined
-    
-    private let changePublisher = NotificationCenter.default.publisher(for: .didChangeCalendarAuthorization)
 
     var body: some View {
         Group {
-            switch authorizationStatus {
+            switch calendarStore.authorizationStatus {
             case .authorized:
                 CalendarListView()
             case .notDetermined:
@@ -24,14 +17,6 @@ struct CalendarPreferencesView: View {
                 CalendarDeniedAccessScreen()
             }
         }
-        .onAppear(perform: self.updateAuthorizationStatus)
-        .onReceive(changePublisher) { notification in
-            updateAuthorizationStatus()
-        }
-    }
-        
-    private func updateAuthorizationStatus() {
-        self.authorizationStatus = calendarStore.authorizationStatus
     }
 }
 
@@ -39,15 +24,10 @@ struct CalendarListView: View {
     @EnvironmentObject private var calendarStore: CalendarStore
     @State private var calendarsBySource: [String: [EKCalendar]] = [:]
     @State private var showingAddAcountModal = false
-    @AppStorage("displayCalendarEvents") private var displayCalendarEvents = false
 
     var body: some View {
         VStack {
             HStack {
-                Toggle(isOn: $displayCalendarEvents) {
-                    Text("Display calendar events")
-                }.toggleStyle(CheckboxToggleStyle())
-                .help("If enabled shows calendar events for selected calendars in the standup view")
                 Spacer()
                 Button(action: self.loadCalendarList) {
                     let image = Image(nsImage: NSImage(named: NSImage.refreshTemplateName)!)
@@ -165,13 +145,6 @@ struct CalendarAccessScreen: View {
         self.isRequestingAccess = true
         calendarStore.requestAccess { granted, _ in
             self.isRequestingAccess = false
-            self.postCalendarAuthorizationChanges()
-        }
-    }
-    
-    private func postCalendarAuthorizationChanges() {
-        DispatchQueue.main.async {
-            NotificationCenter.default.post(name: .didChangeCalendarAuthorization, object: nil)
         }
     }
 }

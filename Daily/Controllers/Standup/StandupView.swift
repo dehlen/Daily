@@ -4,7 +4,8 @@ import MarkdownUI
 struct StandupView: View {
     @EnvironmentObject private var calendarStore: CalendarStore
     @EnvironmentObject private var logStore: LogStore
-    @AppStorage("displayCalendarEvents") private var displayCalendarEvents = false
+
+    let changePublisher = NotificationCenter.default.publisher(for: .shouldUpdateStandupView)
 
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -14,7 +15,7 @@ struct StandupView: View {
     
     var body: some View {
         VStack {
-            if displayCalendarEvents, calendarStore.authorizationStatus == .authorized {
+            if calendarStore.authorizationStatus == .authorized, !calendarStore.todaysEvents.isEmpty {
                 CalendarView()
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -27,6 +28,7 @@ struct StandupView: View {
                 Text("\(Date().previousWorkDay, formatter: Self.dateFormatter)")
                     .font(.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1)))
                 Divider()
                 if let previousWorkdayLogsDocument = try? Document(markdown: logStore.previousWorkdayLogs ?? "No entries") {
                     Markdown(previousWorkdayLogsDocument)
@@ -54,6 +56,9 @@ struct StandupView: View {
         }
         .padding()
         .frame(minWidth: 400, minHeight: 533)
+        .onReceive(changePublisher) { _ in
+            LogStore.shared.load()
+        }
     }
     
     var markdownStyle: MarkdownStyle {
