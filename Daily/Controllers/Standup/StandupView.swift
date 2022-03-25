@@ -28,7 +28,6 @@ struct StandupView: View {
                 Text("\(Date().previousWorkDay, formatter: Self.dateFormatter)")
                     .font(.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1)))
                 Divider()
                 if let previousWorkdayLogsDocument = try? Document(markdown: logStore.previousWorkdayLogs ?? "No entries") {
                     Markdown(previousWorkdayLogsDocument)
